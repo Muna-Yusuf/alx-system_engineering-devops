@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Bash script that displays Best School 10 times, but for the 9th displays Hi.
+# displays Best School 10 times,but for the 9th displays Hi.
 
 COUNTER=0
 while [ $COUNTER -lt 11 ]
@@ -10,5 +10,5 @@ do
 	else
 		echo "Best School"
 	fi
-	let COUNTER+=1
+	(( COUNTER++ ))
 done
