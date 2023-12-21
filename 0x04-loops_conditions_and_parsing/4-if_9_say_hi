@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#Bash script that displays Best School 10 times, but for the 9th displays Hi.
+
+COUNTER=0
+while [ $COUNTER -lt 11 ]
+do
+	if [ $COUNTER = 9 ]
+	then
+		echo "Hi"
+	else
+		echo "Best School"
+	fi
+	let COUNTER+=1
+done
