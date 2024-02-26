@@ -2,21 +2,23 @@
 
 #Install nginx.
 sudo apt-get update -y -qq
-sudo apt-get install nginx -y
+sudo apt-get install -y nginx
 
-#Starting service nginx and nginx firewall.
-sudo service nginx start
-sudo ufw allow 'Nginx HTTP'
+#Creating the /etc/nginx/html directory && empty index.html file.
+mkdir /etc/nginx/html
+touch /etc/nginx/html/index.html
 
-#Enable user to edit files.
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
+#Setting the content of the index.html file to "Hello World!".
+echo "Hello World!" > /etc/nginx/html/index.html
 
-#Default backup index.
-cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.back
-
-#Creating default index.
-echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
+#Seting Nginx to listen on port 80 and serve files from the /etc/nginx/html directory.
+printf %s "server {
+     listen      80;
+     listen      [::]:80 default_server;
+     root        /etc/nginx/html;
+     index       index.html index.htm;
+}
+" > /etc/nginx/sites-available/default
 
 #Restart nginx.
 sudo service nginx restart
