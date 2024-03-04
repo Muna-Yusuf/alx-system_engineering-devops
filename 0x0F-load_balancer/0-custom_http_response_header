@@ -1,5 +1,23 @@
-ponse header
-sudo sed -i "/server_name _/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
+#!/usr/bin/env bash
+# config HTTP response header
+
+#updata the nginx packages
+sudo apt-get update
+sudo apt-get install nginx -y
+
+#creating index page
+echo -e "Hello World!" | sudo tee /var/www/html/index.html
+
+#redirection
+new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/Muna-Yusuf permanent;"
+
+sudo sed-i "s/server_name _;/$new_string/" /etc/nginx/sites-enabled/default
+
+#creating error page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+#HTTP response header
+sudo sed -i "/server_name _;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
 
 #syntax error test
 sudo nginx -t
