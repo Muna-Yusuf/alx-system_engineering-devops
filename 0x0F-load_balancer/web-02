@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Login command for web-01 server.
+#Login command for web-02 server.
 
 #Executes ssh-agent.
 eval $("ssh-agent")
