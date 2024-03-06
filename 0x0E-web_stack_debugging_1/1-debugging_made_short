@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#Same as task 0 but in less lines.
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/defaulti
+sudo service nginx restart
+#pkill -o nginx
