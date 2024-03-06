@@ -2,4 +2,4 @@
 #Same as task 0 but in less lines.
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 sudo service nginx restart
-rm /run/sshd.pid
+rm /run/nginx.pid
