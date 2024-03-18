@@ -1,8 +1,6 @@
 #  0x13. Firewall
-  DevOps - SysAdmin - Security
 
-
-![Alt text] (https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/155/holbertonschool-firewall.gif)
+<p align="center"> <img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/284/V1HjQ1Y.png" width="550" higth="550">
 
 ## Description:
 
