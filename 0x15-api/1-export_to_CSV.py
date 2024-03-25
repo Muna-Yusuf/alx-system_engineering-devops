@@ -7,9 +7,6 @@ import requests
 import sys
 
 
-users_url = "https://jsonplaceholder.typicode.com/users?id="
-todos_url = "https://jsonplaceholder.typicode.com/todos"
-
 def main():
     id = sys.argv[1]
     url = 'https://jsonplaceholder.typicode.com/'
@@ -22,6 +19,7 @@ def main():
         [writer.writerow(
             [id, username, t.get("completed"), t.get("title")]
          ) for t in todos]
+
 
 if __name__ == "__main__":
     main()
