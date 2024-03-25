@@ -1,32 +1,51 @@
 #!/usr/bin/python3
-"""
-Checks student output for returning info from REST API
+"""Python script that, using this REST API, for a given employee ID,
+   returns information about his/her TODO list progress.
+
+   Requirements:
+    - You must use urllib or requests module.
+    - The script must accept an integer as a parameter,
+      which is the employee ID.
+    - The script must display on the standard output the..
+      employee TODO list progress in this exact format:
+
+        - First line: Employee EMPLOYEE_NAME is done with...
+          tasks(NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_TASKS):
+            * EMPLOYEE_NAME: name of the employee.
+            * NUMBER_OF_DONE_TASKS: number of completed tasks.
+            * TOTAL_NUMBER_OF_TASKS: total number of tasks, which...
+              is the sum of completed and non-completed tasks.
+        - Second and N next lines display the title of completed tasks:
+          TASK_TITLE (with 1 tabulation and 1 space before the TASK_TITLE).
 """
 
 import requests
 import sys
 
+url = 'https://jsonplaceholder.typicode.com/'
 
-def main():
-    """ doc """
+
+def check_tasks():
     id = sys.argv[1]
-    url = f'https://jsonplaceholder.typicode.com/'
-    users = f'users?id={id}'
-    todos = f'todos?userId={id}'
-    done  = f'{todos}&copletetd=true'
-    notdone = f'{todos}&copletetd=false'
-    user_resp = requests.get(f'{url}{users}').json()
-    Name = user_resp[0].get("name")
-    
-    task_req = requests.get(f'{url}{todos}').json()
-    task_res = requests.get(f'{url}{done}').json()
-    completed = len(task_req)
-    comp_t = len(task_res)
+    user_resp = requests.get(url + "users/{}".format(id))
+    user = user_resp.json()
+    params = {"userId": id}
+    task_req = requests.get(url + "todos", params=params)
+    task_res = task_req.json()
+    completed_task = []
 
-    print(f'Employee {Name} is done with tasks({completed}/{comp_t}):')
     for task in task_res:
-        print("\t "+task.get("title"))
+        if task.get("completed") is True:
+            completed_task.append(task.get("title"))
+
+    print("Employee {} is done with tasks({}/{}):".format(
+                    user.get("name"),
+                    len(completed_task),
+                    len(task_res)
+                ))
+    for completed in completed_task:
+        print("\t {}".format(completed))
 
 
 if __name__ == "__main__":
-    main()
+    check_tasks()
