@@ -25,7 +25,8 @@ import sys
 url = 'https://jsonplaceholder.typicode.com/'
 
 
-def check_tasks():
+def main():
+    """ DOC."""
     id = sys.argv[1]
     user_resp = requests.get(url + "users/{}".format(id))
     user = user_resp.json()
@@ -48,4 +49,4 @@ def check_tasks():
 
 
 if __name__ == "__main__":
-    check_tasks()
+    main()
