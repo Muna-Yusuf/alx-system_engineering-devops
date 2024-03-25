@@ -21,28 +21,26 @@
 
 import requests
 import sys
+import re
 
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/'
 
-    employee_id = sys.argv[1]
-    user_resp = requests.get(url + "users/{}".format(employee_id))
-    user = user_resp.json()
-    params = {"userId": employee_id}
-    task_req = requests.get(url + "todos", params=params)
-    task_res = task_req.json()
-    completed_task = []
-
-    for task in task_res:
-        if task.get("completed") is True:
-            completed_task.append(task.get("title"))
-
-    print("Employee {} is done with tasks({}/{}):".format(
-                    user.get("name"),
-                    len(completed_task),
-                    len(task_res)
+    if len(sys.argv) > 1:
+        if re.fullmatch(r'\d+', sys.argv[1]):
+            id = int(sys.argv[1])
+            req = requests.get('{}/users/{}'.format(url, id)).json()
+            task_req = requests.get('{}/todos'.format(url)).json()
+            emp_name = req.get('name')
+            tasks = list(filter(lambda x: x.get('userId') == id, task_req))
+            completed_tasks = list(filter(lambda x: x.get('completed'), tasks))
+            print(
+                'Employee {} is done with tasks({}/{}):'.format(
+                    emp_name,
+                    len(completed_tasks),
+                    len(tasks)
                 )
-        )
-
-    for completed in completed_task:
-        print("\t {}".format(completed))
+            )
+            if len(completed_tasks) > 0:
+                for task in completed_tasks:
+                    print('\t {}'.format(task.get('title')))
