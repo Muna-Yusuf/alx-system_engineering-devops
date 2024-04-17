@@ -1,6 +1,6 @@
 # 0x1A. Application server   
 
-<p align="center"> <img src="https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/9/c7d1ed0a2e10d1b4e9b3.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240417%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240417T162106Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=8a2330bfbae1c4456a7d80f0ea6727ec9ca076b40f2f9d3dbc63ee7e8a66f25d" width="550" higth="550">
+<p align="center"> <img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/266/8Gu52Qv.png" width="550" higth="550">
 
 ## Description:
 
